@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Allocation</title>
+    <!-- Bootstrap CSS for responsive design and styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS for additional styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- Page Header -->
+                <h1 class="text-center mb-4">Upload CSV Files for Room Allocation</h1>
+                
+                <!-- Flash messages for user feedback -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="alert alert-info">
+                            <ul class="mb-0">
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                
+                <!-- File upload form -->
+                <form action="{{ url_for('upload_files') }}" method="post" enctype="multipart/form-data">
+                    <!-- Input for Group Information CSV -->
+                    <div class="form-group">
+                        <label for="group_file">Group Information CSV:</label>
+                        <input type="file" class="form-control-file" id="group_file" name="group_file" required>
+                    </div>
+                    <!-- Input for Hostel Information CSV -->
+                    <div class="form-group">
+                        <label for="hostel_file">Hostel Information CSV:</label>
+                        <input type="file" class="form-control-file" id="hostel_file" name="hostel_file" required>
+                    </div>
+                    <!-- Submit button to upload files and trigger room allocation -->
+                    <button type="submit" class="btn btn-primary">Upload and Allocate</button>
+                </form>
+                
+                <!-- Section to display room allocation results if available -->
+                {% if tables %}
+                    <h2 class="mt-5">Room Allocation Results</h2>
+                    <!-- Button to download the allocation results as a CSV file -->
+                    <div class="mb-3">
+                        <a href="{{ download_link }}" class="btn btn-success" download>Download CSV</a>
+                    </div>
+                    <!-- Display the tables with allocation details -->
+                    <div>
+                        {% for table in tables %}
+                            {{ table|safe }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies for interactive elements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS for any additional scripts -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

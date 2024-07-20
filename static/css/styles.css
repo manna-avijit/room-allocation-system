@@ -1,0 +1,38 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif; /* Sets the font for the entire page */
+    margin: 50px; /* Adds margin around the page for spacing */
+    text-align: center; /* Centers text in the body */
+}
+
+/* Styling for the Form */
+form {
+    display: inline-block; /* Makes the form take only as much width as needed */
+    text-align: left; /* Aligns text in the form to the left */
+}
+
+/* Label Styling */
+label {
+    display: block; /* Makes each label a block element for proper spacing */
+    margin: 10px 0 5px; /* Adds margin around the label for spacing */
+}
+
+/* Styling for File Input Fields */
+input[type="file"] {
+    margin-bottom: 15px; /* Adds space below file input fields */
+}
+
+/* Styling for Buttons */
+button {
+    padding: 10px 20px; /* Adds padding inside the button for a better appearance */
+    background-color: #007BFF; /* Sets the background color of the button */
+    color: white; /* Sets the text color inside the button */
+    border: none; /* Removes the default border of the button */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
+}
+
+/* Button Hover Effect */
+button:hover {
+    background-color: #0056b3; /* Changes the background color when the button is hovered */
+}
